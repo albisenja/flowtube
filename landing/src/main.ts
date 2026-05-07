@@ -6,6 +6,47 @@ document.querySelectorAll<HTMLAnchorElement>("[data-store-link]").forEach((link)
   link.rel = "noopener noreferrer";
 });
 
+const simulatorStates = {
+  "tutorial-playing": {
+    tutorial: "Playing",
+    music: "Paused",
+    result: "FlowTube pauses music while your tutorial is active."
+  },
+  "tutorial-paused": {
+    tutorial: "Paused",
+    music: "Playing",
+    result: "FlowTube starts your focus music after the configured delay."
+  },
+  "work-tab": {
+    tutorial: "Left for work",
+    music: "Playing",
+    result: "FlowTube treats the work tab as a focus moment and starts music."
+  },
+  "back-to-tutorial": {
+    tutorial: "Returned",
+    music: "Paused",
+    result: "FlowTube pauses music when you return to the tutorial tab."
+  }
+};
+
+const simulatorButtons = document.querySelectorAll<HTMLButtonElement>("[data-scenario]");
+const simulatorTutorial = document.querySelector<HTMLElement>("[data-sim-tutorial]");
+const simulatorMusic = document.querySelector<HTMLElement>("[data-sim-music]");
+const simulatorResult = document.querySelector<HTMLElement>("[data-sim-result]");
+
+simulatorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const scenario = button.dataset.scenario;
+    if (!scenario || !(scenario in simulatorStates) || !simulatorTutorial || !simulatorMusic || !simulatorResult) return;
+
+    const state = simulatorStates[scenario as keyof typeof simulatorStates];
+    simulatorButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+    simulatorTutorial.textContent = state.tutorial;
+    simulatorMusic.textContent = state.music;
+    simulatorResult.textContent = state.result;
+  });
+});
+
 const observer = new IntersectionObserver(
   (entries) => {
     for (const entry of entries) {

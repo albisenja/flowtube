@@ -20,7 +20,7 @@
       property="og:description"
       content="Install FlowTube from the Chrome Web Store to automatically pause and play focus music around YouTube tutorials."
     />
-    <meta property="og:image" content="/flowtube-social.svg" />
+    <meta property="og:image" content="flowtube-social.svg" />
     <meta property="og:site_name" content="FlowTube" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="FlowTube - YouTube tutorials and focus music in sync" />
@@ -28,17 +28,17 @@
       name="twitter:description"
       content="A Chrome extension that handles the tab audio shuffle between tutorials and focus music."
     />
-    <meta name="twitter:image" content="/flowtube-social.svg" />
+    <meta name="twitter:image" content="flowtube-social.svg" />
     <title>FlowTube | Chrome extension for YouTube tutorials and focus music</title>
-    <link rel="icon" href="/flowtube-logo.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/flowtube-logo.svg" />
+    <link rel="icon" href="flowtube-logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="flowtube-logo.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650;9..144,800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/src/styles.css" />
+    <link rel="stylesheet" href="src/styles.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -59,7 +59,7 @@
     <div class="grain" aria-hidden="true"></div>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="FlowTube home">
-        <img class="brand-logo" src="/flowtube-logo.svg" alt="" />
+        <img class="brand-logo" src="flowtube-logo.svg" alt="" />
         <span>FlowTube</span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
@@ -100,7 +100,7 @@
               <p>FlowTube for Chrome</p>
             </div>
             <div class="store-badge">
-              <img src="/flowtube-logo.svg" alt="" />
+              <img src="flowtube-logo.svg" alt="" />
               <div>
                 <strong>FlowTube</strong>
                 <span>Available on Chrome Web Store</span>
@@ -135,6 +135,58 @@
               <strong>FlowTube started focus music</strong>
               <span>Because your tutorial paused and your music tab was ready.</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section simulator" id="simulator">
+        <div class="simulator-card reveal">
+          <div class="simulator-copy">
+            <p class="eyebrow">Try the flow</p>
+            <h2>Click a moment. Watch FlowTube react.</h2>
+            <p>
+              A tiny simulation of the everyday audio handoff: tutorial state changes, music follows, and your attention stays where
+              it belongs.
+            </p>
+          </div>
+
+          <div class="flow-simulator" aria-live="polite">
+            <div class="simulator-topline">
+              <span class="live-dot"></span>
+              <strong>Live flow preview</strong>
+            </div>
+
+            <div class="scenario-buttons" role="group" aria-label="FlowTube scenario simulator">
+              <button class="scenario-button is-active" type="button" data-scenario="tutorial-playing">Tutorial playing</button>
+              <button class="scenario-button" type="button" data-scenario="tutorial-paused">Tutorial paused</button>
+              <button class="scenario-button" type="button" data-scenario="work-tab">Switched to GitHub</button>
+              <button class="scenario-button" type="button" data-scenario="back-to-tutorial">Back to tutorial</button>
+            </div>
+
+            <div class="simulator-stage">
+              <article class="sim-state tutorial-state">
+                <div class="sim-icon tutorial-icon" aria-hidden="true"></div>
+                <span>Tutorial</span>
+                <strong data-sim-tutorial>Playing</strong>
+                <small>YouTube lesson tab</small>
+              </article>
+              <div class="sim-arrow" aria-hidden="true">
+                <img src="flowtube-logo.svg" alt="" />
+                <span>FlowTube</span>
+              </div>
+              <article class="sim-state music-state">
+                <div class="sim-icon music-icon" aria-hidden="true">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+                <span>Focus music</span>
+                <strong data-sim-music>Paused</strong>
+                <small>YouTube Music tab</small>
+              </article>
+            </div>
+
+            <p class="sim-result" data-sim-result>FlowTube pauses music while your tutorial is active.</p>
           </div>
         </div>
       </section>
@@ -270,7 +322,7 @@
             <p>Open the Chrome Web Store listing, choose Add to Chrome, then pin FlowTube for quick access while you work.</p>
           </div>
           <div class="store-card" aria-label="Chrome Web Store call to action">
-            <img src="/flowtube-logo.svg" alt="" />
+            <img src="flowtube-logo.svg" alt="" />
             <strong>FlowTube for Chrome</strong>
             <span>Automatic YouTube tutorial and focus music switching.</span>
             <a class="button primary store-link" href="#" data-store-link>Add to Chrome</a>

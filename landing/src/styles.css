@@ -21,10 +21,14 @@
 }
 
 html {
+  background: #fff3dc;
   scroll-behavior: smooth;
 }
 
 body {
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
   margin: 0;
   min-width: 320px;
   background:
@@ -36,13 +40,25 @@ body {
 body::before {
   position: fixed;
   inset: 0;
-  z-index: -2;
+  z-index: 0;
   content: "";
   background:
     linear-gradient(90deg, rgba(28, 23, 16, 0.04) 1px, transparent 1px),
     linear-gradient(rgba(28, 23, 16, 0.035) 1px, transparent 1px);
   background-size: 42px 42px;
   mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+body::after {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 70;
+  height: 3px;
+  content: "";
+  background: #fff3dc;
 }
 
 a {
@@ -70,8 +86,7 @@ code {
 }
 
 .site-header {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 30;
   display: flex;
   align-items: center;
@@ -82,9 +97,14 @@ code {
   padding: 0.65rem;
   border: 1px solid rgba(28, 23, 16, 0.12);
   border-radius: 999px;
-  background: rgba(255, 250, 240, 0.78);
-  box-shadow: 0 18px 50px rgba(67, 44, 24, 0.11);
-  backdrop-filter: blur(18px);
+  background: rgba(255, 250, 240, 0.94);
+  box-shadow: 0 14px 34px rgba(67, 44, 24, 0.1);
+}
+
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 
 .brand,
@@ -505,6 +525,7 @@ h3 {
 }
 
 .problem,
+.simulator,
 .features,
 .flow,
 .privacy,
@@ -512,6 +533,267 @@ h3 {
 .cta-strip,
 .faq {
   padding: 5rem 0;
+}
+
+.simulator {
+  padding: 3rem 0 5rem;
+}
+
+.simulator-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 1.2rem;
+  align-items: stretch;
+  padding: clamp(1.2rem, 4vw, 2rem);
+  border: 1px solid rgba(28, 23, 16, 0.13);
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at 12% 15%, rgba(169, 215, 255, 0.5), transparent 14rem),
+    linear-gradient(135deg, rgba(255, 250, 240, 0.92), rgba(245, 224, 192, 0.86));
+  box-shadow: var(--shadow);
+}
+
+.simulator-card::before {
+  position: absolute;
+  top: -12rem;
+  right: 18%;
+  width: 22rem;
+  height: 22rem;
+  content: "";
+  border-radius: 50%;
+  background: rgba(198, 243, 197, 0.52);
+  filter: blur(18px);
+}
+
+.simulator-card > * {
+  position: relative;
+}
+
+.simulator-copy h2 {
+  max-width: 11ch;
+  font-size: clamp(2rem, 4.8vw, 4.4rem);
+}
+
+.simulator-copy p:last-child {
+  max-width: 32rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+.flow-simulator {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 250, 240, 0.14);
+  border-radius: 1.7rem;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(241, 102, 45, 0.34), transparent 12rem),
+    linear-gradient(145deg, #211910, #111813);
+  box-shadow: inset 0 1px 0 rgba(255, 250, 240, 0.08), 0 24px 55px rgba(28, 23, 16, 0.22);
+}
+
+.flow-simulator::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  opacity: 0.14;
+  background:
+    linear-gradient(90deg, rgba(255, 250, 240, 0.2) 1px, transparent 1px),
+    linear-gradient(rgba(255, 250, 240, 0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.flow-simulator > * {
+  position: relative;
+}
+
+.simulator-topline {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgba(255, 250, 240, 0.84);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.live-dot {
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 0 0 rgba(198, 243, 197, 0.55);
+  animation: pulse 1600ms infinite ease-out;
+}
+
+.scenario-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.scenario-button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 0.9rem;
+  color: rgba(255, 250, 240, 0.72);
+  background: rgba(255, 250, 240, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 250, 240, 0.12);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.scenario-button:hover,
+.scenario-button.is-active {
+  color: var(--ink);
+  background: var(--ember);
+  background: var(--mint);
+  box-shadow: 0 14px 32px rgba(241, 102, 45, 0.24);
+  transform: translateY(-2px);
+}
+
+.simulator-stage {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.sim-state,
+.sim-arrow {
+  min-height: 12rem;
+  border-radius: 1.25rem;
+}
+
+.sim-state {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  align-content: space-between;
+  padding: 1rem;
+  border: 1px solid rgba(255, 250, 240, 0.13);
+  background:
+    radial-gradient(circle at 90% 8%, rgba(169, 215, 255, 0.58), transparent 7rem),
+    linear-gradient(145deg, rgba(255, 246, 231, 0.96), rgba(245, 223, 192, 0.92));
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.15);
+}
+
+.music-state {
+  color: white;
+  background:
+    radial-gradient(circle at 84% 14%, rgba(198, 243, 197, 0.38), transparent 7rem),
+    linear-gradient(145deg, #263f2e, #121c16);
+}
+
+.sim-state span {
+  color: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  opacity: 0.66;
+  text-transform: uppercase;
+}
+
+.sim-state strong {
+  margin-top: 0.35rem;
+  font-size: clamp(1.35rem, 3vw, 2.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.sim-state small {
+  display: block;
+  margin-top: 0.45rem;
+  color: inherit;
+  font-size: 0.82rem;
+  opacity: 0.58;
+}
+
+.sim-icon {
+  width: 4.3rem;
+  height: 4.3rem;
+  border-radius: 1.2rem;
+}
+
+.tutorial-icon {
+  background:
+    linear-gradient(135deg, transparent 47%, rgba(28, 23, 16, 0.22) 47% 53%, transparent 53%),
+    radial-gradient(circle, var(--sky), transparent 68%);
+  transform: rotate(12deg);
+}
+
+.music-icon {
+  display: flex;
+  align-items: end;
+  gap: 0.32rem;
+  padding: 0.8rem;
+  background: rgba(198, 243, 197, 0.12);
+}
+
+.music-icon i {
+  display: block;
+  width: 0.55rem;
+  border-radius: 999px;
+  background: var(--mint);
+  animation: bounce 1100ms infinite ease-in-out;
+}
+
+.music-icon i:nth-child(1) {
+  height: 1.4rem;
+}
+
+.music-icon i:nth-child(2) {
+  height: 2.7rem;
+  animation-delay: 160ms;
+}
+
+.music-icon i:nth-child(3) {
+  height: 2rem;
+  animation-delay: 320ms;
+}
+
+.sim-arrow {
+  display: grid;
+  min-width: 6rem;
+  place-items: center;
+  padding: 0.8rem;
+  color: rgba(255, 250, 240, 0.78);
+  background: rgba(255, 250, 240, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 250, 240, 0.12);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sim-arrow img {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 1.15rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.24);
+}
+
+.sim-arrow span {
+  margin-top: 0.55rem;
+}
+
+.sim-result {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  color: var(--mint);
+  background: rgba(198, 243, 197, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(198, 243, 197, 0.2);
+  font-weight: 800;
+  line-height: 1.45;
 }
 
 .problem-grid,
@@ -798,6 +1080,16 @@ h3 {
   }
 }
 
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(198, 243, 197, 0.55);
+  }
+
+  100% {
+    box-shadow: 0 0 0 11px rgba(198, 243, 197, 0);
+  }
+}
+
 @media (max-width: 900px) {
   .site-header {
     align-items: stretch;
@@ -809,7 +1101,8 @@ h3 {
   }
 
   .hero,
-  .install-card {
+  .install-card,
+  .simulator-card {
     grid-template-columns: 1fr;
   }
 
@@ -832,6 +1125,14 @@ h3 {
   .cta-card {
     align-items: start;
     flex-direction: column;
+  }
+
+  .simulator-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .sim-arrow {
+    min-height: 3.25rem;
   }
 
   .feature-card.large {
@@ -875,6 +1176,7 @@ h3 {
   }
 
   .problem,
+  .simulator,
   .features,
   .flow,
   .privacy,
