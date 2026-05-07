@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlowTube</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <header>
+        <h1>FlowTube</h1>
+        <p id="status" class="status">Automation is ON</p>
+      </header>
+
+      <section class="panel">
+        <label class="check-row">
+          <input id="automation-toggle" type="checkbox" />
+          <span>Automation enabled</span>
+        </label>
+        <div id="temporary-status" class="hint"></div>
+        <div class="button-grid compact">
+          <button id="disable-15" type="button" class="secondary">Off 15m</button>
+          <button id="disable-60" type="button" class="secondary">Off 1h</button>
+          <button id="disable-restart" type="button" class="secondary">Off restart</button>
+          <button id="re-enable" type="button" class="secondary">Re-enable</button>
+        </div>
+      </section>
+
+      <details open>
+        <summary>Automation</summary>
+        <section class="panel">
+          <label class="field">
+            <span>Trigger</span>
+            <select id="trigger-mode">
+              <option value="both">Both</option>
+              <option value="pause-only">Pause/ended only</option>
+              <option value="leave-only">Leaving tutorial only</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Work-tab behavior</span>
+            <select id="work-tab-behavior">
+              <option value="work-only">Only work tabs</option>
+              <option value="any-non-youtube">Any non-YouTube tab</option>
+              <option value="disabled">Disabled</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Music detection</span>
+            <select id="music-detection">
+              <option value="conservative">Conservative</option>
+              <option value="balanced">Balanced</option>
+              <option value="aggressive">Aggressive</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Start delay</span>
+            <select id="start-delay">
+              <option value="0">Instant</option>
+              <option value="2000">2 seconds</option>
+              <option value="5000">5 seconds</option>
+              <option value="10000">10 seconds</option>
+            </select>
+          </label>
+
+          <label class="check-row">
+            <input id="pause-on-play" type="checkbox" />
+            <span>Pause music when tutorial plays</span>
+          </label>
+          <label class="check-row">
+            <input id="pause-on-return" type="checkbox" />
+            <span>Pause music when returning to tutorial</span>
+          </label>
+          <label class="check-row">
+            <input id="prevent-multiple" type="checkbox" />
+            <span>Prevent multiple YouTube tabs playing</span>
+          </label>
+          <label class="check-row">
+            <input id="meeting-protection" type="checkbox" />
+            <span>Meeting protection</span>
+          </label>
+          <label class="check-row">
+            <input id="pause-on-meeting" type="checkbox" />
+            <span>Pause music on meeting tab</span>
+          </label>
+        </section>
+      </details>
+
+      <section class="panel">
+        <div class="button-grid">
+          <button id="toggle-now" type="button">Toggle now</button>
+          <button id="undo-action" type="button" class="secondary">Undo last action</button>
+          <button id="pause-all" type="button" class="secondary">Pause all YouTube tabs</button>
+          <button id="pause-others" type="button" class="secondary">Pause other YouTube tabs</button>
+        </div>
+        <div class="shortcut">
+          <strong>Shortcut: Alt + Shift + F</strong>
+          <span>You can change this in Chrome extension shortcuts.</span>
+          <button id="shortcut-settings" type="button" class="secondary">Change keyboard shortcut</button>
+        </div>
+      </section>
+
+      <details open>
+        <summary>Diagnostics</summary>
+        <section class="panel">
+          <dl id="diagnostics" class="diagnostics"></dl>
+          <div class="button-grid compact">
+            <button id="refresh-diagnostics" type="button" class="secondary">Refresh</button>
+            <button id="clear-error" type="button" class="secondary">Clear error</button>
+            <button id="open-music-tab" type="button" class="secondary">Open affected tab</button>
+            <button id="detect-tabs" type="button">Detect YouTube tabs</button>
+          </div>
+          <div class="section-label">Playing YouTube tabs</div>
+          <ul id="playing-tabs" class="plain-list"></ul>
+          <p class="hint">Chrome may block autoplay until you click the music tab once. FlowTube only works inside Chrome.</p>
+        </section>
+      </details>
+
+      <details open>
+        <summary>Detected YouTube tabs</summary>
+        <section class="panel">
+          <button id="clear-overrides" type="button" class="secondary">Clear manual tab overrides</button>
+          <ul id="tabs-list" class="tabs-list" aria-live="polite"></ul>
+        </section>
+      </details>
+
+      <details>
+        <summary>Default music source</summary>
+        <section class="panel">
+          <label class="check-row">
+            <input id="open-default-music" type="checkbox" />
+            <span>Open default music when no music tab is found</span>
+          </label>
+          <div id="default-music-url" class="hint">No default music source set.</div>
+          <button id="clear-default-music" type="button" class="secondary">Clear default music source</button>
+        </section>
+      </details>
+
+      <details>
+        <summary>Custom work sites</summary>
+        <section class="panel">
+          <p class="hint">Defaults like GitHub, StackOverflow, localhost, ChatGPT, Docs, Notion, and Figma already work.</p>
+          <div class="input-row">
+            <input id="work-site-input" type="text" placeholder="linear.app" />
+            <button id="add-work-site" type="button">Add</button>
+          </div>
+          <ul id="work-sites-list" class="plain-list"></ul>
+          <button id="reset-work-sites" type="button" class="secondary">Reset custom work sites</button>
+        </section>
+      </details>
+
+      <details>
+        <summary>Channel preferences</summary>
+        <section class="panel">
+          <ul id="channel-preferences-list" class="plain-list"></ul>
+          <button id="clear-channel-preferences" type="button" class="secondary">Clear channel preferences</button>
+        </section>
+      </details>
+    </main>
+
+    <script type="module" src="./popup.js"></script>
+  </body>
+</html>
