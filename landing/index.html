@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="FlowTube is a Chrome Web Store extension that automatically switches between YouTube tutorials and YouTube or YouTube Music focus music while you work."
+    />
+    <meta
+      name="keywords"
+      content="FlowTube, Chrome extension, YouTube tutorial extension, YouTube Music, focus music, productivity extension, coding music, study music, Chrome Web Store"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#f1662d" />
+    <meta name="author" content="FlowTube" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="FlowTube - YouTube tutorials and focus music in sync" />
+    <meta
+      property="og:description"
+      content="Install FlowTube from the Chrome Web Store to automatically pause and play focus music around YouTube tutorials."
+    />
+    <meta property="og:image" content="/flowtube-social.svg" />
+    <meta property="og:site_name" content="FlowTube" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FlowTube - YouTube tutorials and focus music in sync" />
+    <meta
+      name="twitter:description"
+      content="A Chrome extension that handles the tab audio shuffle between tutorials and focus music."
+    />
+    <meta name="twitter:image" content="/flowtube-social.svg" />
+    <title>FlowTube | Chrome extension for YouTube tutorials and focus music</title>
+    <link rel="icon" href="/flowtube-logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/flowtube-logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650;9..144,800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "FlowTube",
+        "applicationCategory": "BrowserApplication",
+        "operatingSystem": "Chrome",
+        "description": "FlowTube is a Chrome extension that automatically switches between YouTube tutorials and YouTube or YouTube Music focus music.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="FlowTube home">
+        <img class="brand-logo" src="/flowtube-logo.svg" alt="" />
+        <span>FlowTube</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="nav-cta store-link" href="#" data-store-link>Add to Chrome</a>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Now on the Chrome Web Store</p>
+          <h1>Keep tutorials and focus music in flow.</h1>
+          <p class="hero-text">
+            FlowTube is a Chrome extension that automatically switches between YouTube tutorials and YouTube or YouTube Music
+            focus music, so your learning sessions stop turning into tab-management cardio.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary store-link" href="#" data-store-link>Add to Chrome</a>
+            <a class="button ghost" href="#how-it-works">See how it works</a>
+          </div>
+          <div class="trust-row" aria-label="Product promises">
+            <span>Chrome Web Store extension</span>
+            <span>No YouTube API</span>
+            <span>Local-first settings</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" id="demo" aria-label="FlowTube extension preview">
+          <div class="browser-shell">
+            <div class="browser-top">
+              <span></span>
+              <span></span>
+              <span></span>
+              <p>FlowTube for Chrome</p>
+            </div>
+            <div class="store-badge">
+              <img src="/flowtube-logo.svg" alt="" />
+              <div>
+                <strong>FlowTube</strong>
+                <span>Available on Chrome Web Store</span>
+              </div>
+            </div>
+            <div class="mock-grid">
+              <article class="video-card tutorial-card">
+                <div class="video-glow"></div>
+                <p class="card-kicker">Tutorial</p>
+                <h2>Build a better workflow</h2>
+                <div class="timeline">
+                  <span style="width: 48%"></span>
+                </div>
+                <p class="state paused">Paused</p>
+              </article>
+              <article class="video-card music-card">
+                <div class="equalizer" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <p class="card-kicker">Focus music</p>
+                <h2>Deep focus radio</h2>
+                <div class="timeline">
+                  <span style="width: 72%"></span>
+                </div>
+                <p class="state playing">Playing</p>
+              </article>
+            </div>
+            <div class="flow-panel">
+              <strong>FlowTube started focus music</strong>
+              <span>Because your tutorial paused and your music tab was ready.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section problem">
+        <div class="section-heading reveal">
+          <p class="eyebrow">For learners, builders, and deep workers</p>
+          <h2>YouTube is useful. The audio shuffle is not.</h2>
+        </div>
+        <div class="problem-grid">
+          <article class="problem-card reveal">
+            <span class="number">01</span>
+            <h3>Pause the lesson</h3>
+            <p>FlowTube can start your focus music when a tutorial pauses or ends.</p>
+          </article>
+          <article class="problem-card reveal">
+            <span class="number">02</span>
+            <h3>Return to learn</h3>
+            <p>When the tutorial plays again, FlowTube can pause the music for you.</p>
+          </article>
+          <article class="problem-card reveal">
+            <span class="number">03</span>
+            <h3>Stay in Chrome</h3>
+            <p>Work-tab detection helps music start when you leave a tutorial for sites like GitHub, Docs, Notion, or localhost.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section features" id="features">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Made for real tutorial sessions</p>
+          <h2>Small controls. Big context relief.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card large reveal">
+            <h3>Automatic audio switching</h3>
+            <p>Let FlowTube handle the play/pause rhythm between your tutorial and your music tab.</p>
+          </article>
+          <article class="feature-card reveal">
+            <h3>Manual tab overrides</h3>
+            <p>Mark any detected tab as music, tutorial, or ignored when keyword detection needs a nudge.</p>
+          </article>
+          <article class="feature-card reveal">
+            <h3>Channel memory</h3>
+            <p>Save a YouTube channel as music, tutorial, or ignored so FlowTube adapts to your habits.</p>
+          </article>
+          <article class="feature-card reveal">
+            <h3>Meeting protection</h3>
+            <p>Avoid surprise music when you switch into browser-based calls.</p>
+          </article>
+          <article class="feature-card reveal">
+            <h3>Diagnostics</h3>
+            <p>See detected YouTube tabs, last actions, autoplay errors, and currently playing tabs.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section cta-strip">
+        <div class="cta-card reveal">
+          <div>
+            <p class="eyebrow">Ready from the store</p>
+            <h2>Add FlowTube to Chrome.</h2>
+          </div>
+          <a class="button primary store-link" href="#" data-store-link>Add to Chrome - It is free</a>
+        </div>
+      </section>
+
+      <section class="section flow" id="how-it-works">
+        <div class="section-heading reveal">
+          <p class="eyebrow">How FlowTube works</p>
+          <h2>Three moves, no YouTube API.</h2>
+        </div>
+        <div class="flow-steps">
+          <article class="step reveal">
+            <span>1</span>
+            <h3>Detect video state</h3>
+            <p>A content script reads YouTube page video state like play, pause, ended, and current tab metadata.</p>
+          </article>
+          <article class="step reveal">
+            <span>2</span>
+            <h3>Choose the right tab</h3>
+            <p>FlowTube checks open YouTube tabs, keyword signals, manual overrides, and channel preferences.</p>
+          </article>
+          <article class="step reveal">
+            <span>3</span>
+            <h3>Switch the audio</h3>
+            <p>The extension sends safe play and pause commands, then records diagnostics if Chrome blocks autoplay.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section privacy" id="privacy">
+        <div class="privacy-card reveal">
+          <p class="eyebrow">Privacy-first positioning</p>
+          <h2>Your preferences stay in your browser.</h2>
+          <p>
+            FlowTube stores settings, overrides, channel preferences, diagnostics, and undo state with
+            <code>chrome.storage.local</code>. There is no backend, no account requirement, no analytics, and no cloud sync.
+          </p>
+        </div>
+      </section>
+
+      <section class="section faq" id="faq">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Questions people search for</p>
+          <h2>FlowTube FAQ.</h2>
+        </div>
+        <div class="faq-grid">
+          <details class="faq-item reveal">
+            <summary>Does FlowTube work with YouTube Music?</summary>
+            <p>Yes. FlowTube supports regular YouTube and YouTube Music tabs in Chrome.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Does FlowTube collect my YouTube data?</summary>
+            <p>No. Preferences and diagnostics are stored locally in your browser with Chrome extension storage.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Why did Chrome block autoplay?</summary>
+            <p>Chrome may require one click on the music tab before extensions can start playback automatically.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Is FlowTube affiliated with YouTube or Google?</summary>
+            <p>No. FlowTube is an independent extension and is not affiliated with, endorsed by, or sponsored by YouTube or Google.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section install" id="install">
+        <div class="install-card reveal">
+          <div>
+            <p class="eyebrow">Chrome Web Store</p>
+            <h2>Install FlowTube in a few clicks.</h2>
+            <p>Open the Chrome Web Store listing, choose Add to Chrome, then pin FlowTube for quick access while you work.</p>
+          </div>
+          <div class="store-card" aria-label="Chrome Web Store call to action">
+            <img src="/flowtube-logo.svg" alt="" />
+            <strong>FlowTube for Chrome</strong>
+            <span>Automatic YouTube tutorial and focus music switching.</span>
+            <a class="button primary store-link" href="#" data-store-link>Add to Chrome</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>FlowTube is an independent Chrome extension for smoother tutorial sessions.</p>
+      <a class="store-link" href="#" data-store-link>Add to Chrome</a>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

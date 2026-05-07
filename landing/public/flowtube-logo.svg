@@ -1,0 +1,10 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">FlowTube logo</title>
+  <desc id="desc">A rounded play button with flowing audio waves.</desc>
+  <rect width="512" height="512" rx="116" fill="#1C1710"/>
+  <path d="M92 326C144 326 144 186 196 186C248 186 248 326 300 326C352 326 352 186 420 186" stroke="#C6F3C5" stroke-width="34" stroke-linecap="round"/>
+  <path d="M92 249C132 249 148 226 176 226C216 226 223 290 264 290C305 290 320 249 356 249C381 249 397 263 420 263" stroke="#A9D7FF" stroke-width="26" stroke-linecap="round"/>
+  <circle cx="256" cy="256" r="118" fill="#FFF6E7" stroke="#F1662D" stroke-width="18"/>
+  <path d="M226 198C226 185.8 239.3 178.2 249.9 184.3L330.3 230.7C341.1 236.9 341.1 252.5 330.3 258.7L249.9 305.1C239.3 311.2 226 303.6 226 291.4V198Z" fill="#F1662D"/>
+  <path d="M132 386H380" stroke="#FFF6E7" stroke-width="24" stroke-linecap="round" opacity=".92"/>
+</svg>

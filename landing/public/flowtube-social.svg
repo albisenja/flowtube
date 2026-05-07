@@ -1,0 +1,12 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#FFF6E7"/>
+  <circle cx="1000" cy="70" r="250" fill="#A9D7FF" opacity=".58"/>
+  <circle cx="160" cy="560" r="260" fill="#F1662D" opacity=".22"/>
+  <rect x="82" y="84" width="1036" height="462" rx="52" fill="#1C1710"/>
+  <path d="M161 394C257 394 257 219 353 219C449 219 449 394 545 394C641 394 641 219 767 219" stroke="#C6F3C5" stroke-width="42" stroke-linecap="round"/>
+  <circle cx="270" cy="315" r="112" fill="#FFF6E7" stroke="#F1662D" stroke-width="18"/>
+  <path d="M244 263C244 250.8 257.3 243.2 267.9 249.3L340.3 291.1C351.1 297.3 351.1 312.9 340.3 319.1L267.9 360.9C257.3 367 244 359.4 244 347.2V263Z" fill="#F1662D"/>
+  <text x="430" y="276" fill="#FFF6E7" font-family="Arial, sans-serif" font-size="86" font-weight="800">FlowTube</text>
+  <text x="430" y="365" fill="#C6F3C5" font-family="Arial, sans-serif" font-size="44" font-weight="700">Tutorials and focus music in sync.</text>
+  <text x="430" y="430" fill="#FFF6E7" opacity=".76" font-family="Arial, sans-serif" font-size="31">A Chrome extension for smoother YouTube learning sessions.</text>
+</svg>
