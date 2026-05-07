@@ -43,6 +43,7 @@ const playingTabs = query<HTMLUListElement>("#playing-tabs");
 const tabsList = query<HTMLUListElement>("#tabs-list");
 const workSitesList = query<HTMLUListElement>("#work-sites-list");
 const channelPreferencesList = query<HTMLUListElement>("#channel-preferences-list");
+const popupRoot = query<HTMLElement>(".popup");
 
 function query<T extends Element>(selector: string): T {
   const element = document.querySelector<T>(selector);
@@ -99,6 +100,27 @@ async function refreshEverything(): Promise<void> {
   await detectYouTubeTabs();
 }
 
+async function preservePopupScroll(action: () => Promise<unknown>): Promise<void> {
+  const scrollTop = popupRoot.scrollTop;
+
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur();
+  }
+
+  await action();
+  restorePopupScroll(scrollTop);
+}
+
+function restorePopupScroll(scrollTop: number): void {
+  popupRoot.scrollTop = scrollTop;
+  requestAnimationFrame(() => {
+    popupRoot.scrollTop = scrollTop;
+  });
+  window.setTimeout(() => {
+    popupRoot.scrollTop = scrollTop;
+  }, 0);
+}
+
 function renderTabs(response: YouTubeTabsResponseMessage): void {
   tabsList.replaceChildren();
   renderChannelPreferences(response.channelPreferences);
@@ -131,16 +153,26 @@ function renderTabs(response: YouTubeTabsResponseMessage): void {
     actions.append(
       actionButton("Use as music", () => setManualTabRole(tab.tabId, "music")),
       actionButton("Use as tutorial", () => setManualTabRole(tab.tabId, "tutorial")),
-      actionButton("Ignore", () => setManualTabRole(tab.tabId, "ignored")),
-      actionButton("Set default", () => setDefaultMusic(tab.tabId))
+      actionButton("Ignore", () => setManualTabRole(tab.tabId, "ignored"))
     );
 
     if (tab.channelName) {
-      actions.append(
+      const moreActions = document.createElement("details");
+      moreActions.className = "tab-more";
+      const moreSummary = document.createElement("summary");
+      moreSummary.textContent = "More";
+      const moreActionButtons = document.createElement("div");
+      moreActionButtons.className = "mini-actions";
+      moreActionButtons.append(
+        actionButton("Set default", () => setDefaultMusic(tab.tabId)),
         actionButton("Always music", () => setChannelPreference(tab.channelName!, "music")),
         actionButton("Always tutorial", () => setChannelPreference(tab.channelName!, "tutorial")),
         actionButton("Ignore channel", () => setChannelPreference(tab.channelName!, "ignored"))
       );
+      moreActions.append(moreSummary, moreActionButtons);
+      actions.append(moreActions);
+    } else {
+      actions.append(actionButton("Set default", () => setDefaultMusic(tab.tabId)));
     }
 
     item.append(title, meta, reasons, url, actions);
@@ -261,19 +293,23 @@ async function refreshDiagnostics(): Promise<void> {
 }
 
 function setManualTabRole(tabId: number, role: "music" | "tutorial" | "ignored"): void {
-  sendMessage({ type: "SET_MANUAL_TAB_ROLE", tabId, role }).then(refreshEverything).catch(() => undefined);
+  preservePopupScroll(() => sendMessage({ type: "SET_MANUAL_TAB_ROLE", tabId, role }).then(refreshEverything)).catch(() => undefined);
 }
 
 function setChannelPreference(channelName: string, preference: ChannelPreference): void {
-  sendMessage({ type: "SET_CHANNEL_PREFERENCE", channelName, preference }).then(refreshEverything).catch(() => undefined);
+  preservePopupScroll(() => sendMessage({ type: "SET_CHANNEL_PREFERENCE", channelName, preference }).then(refreshEverything)).catch(
+    () => undefined
+  );
 }
 
 function removeChannelPreference(channelName: string): void {
-  sendMessage({ type: "REMOVE_CHANNEL_PREFERENCE", channelName }).then(refreshEverything).catch(() => undefined);
+  preservePopupScroll(() => sendMessage({ type: "REMOVE_CHANNEL_PREFERENCE", channelName }).then(refreshEverything)).catch(
+    () => undefined
+  );
 }
 
 function setDefaultMusic(tabId: number): void {
-  sendMessage({ type: "SET_DEFAULT_MUSIC_TAB", tabId }).then(refreshEverything).catch(() => undefined);
+  preservePopupScroll(() => sendMessage({ type: "SET_DEFAULT_MUSIC_TAB", tabId }).then(refreshEverything)).catch(() => undefined);
 }
 
 function removeWorkSite(site: string): void {

@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build",
+    "site:dev": "vite --config landing/vite.config.ts",
+    "site:build": "vite build --config landing/vite.config.ts",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
